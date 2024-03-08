@@ -1,0 +1,73 @@
+﻿@model PaginatedList<BookModel>
+
+
+@if (User.IsInRole("admin"))
+{
+    <h5 class="mb-4">Numero di libri nel catalogo: @ViewBag.Count </h5>
+}
+
+<table class="table">
+    <thead class="table-dark">
+        @if (User.IsInRole("admin"))
+        {
+            <tr>
+                <th>Id</th>
+                <th>Titolo</th>
+                <th>Autore</th>
+                <th>Rilascio</th>
+                <th>Disponibilità</th>
+                <th>Action Details</th>
+                <th>Action Update</th>
+                <th>Action Delete</th>
+            </tr>
+
+        }
+        else
+        {
+            <tr>
+                <th>Id</th>
+                <th>Titolo</th>
+                <th>Autore</th>
+                <th>Rilascio</th>
+                <th>Disponibilità</th>
+                <th>Action Details</th>
+            </tr>
+        }
+
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Items)
+        {
+            if (User.IsInRole("admin"))
+            {
+                <tr class="table-light">
+                    <td>@book.Id</td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.ReleaseDate</td>
+                    <td>@book.Availability</td>
+                    <td><a class="btn bg-info" onclick="apriModaleDetails(@book.Id)">Details</a></td>
+                    <td><a class="btn bg-warning" onclick="apriModale(@book.Id)">Update</a></td>
+                    <td><a class="btn bg-danger" onclick="apriModaleDelete(@book.Id)">Delete</a></td>
+                </tr>
+            }
+            else
+            {
+                if (book.Availability.Equals(true)){
+                    <tr class="table-light">
+                        <td>@book.Id</td>
+                        <td>@book.Title</td>
+                        <td>@book.Author</td>
+                        <td>@book.ReleaseDate</td>
+                        <td>@book.Availability</td>
+                        <td><a class="btn bg-info" onclick="apriModaleDetails(@book.Id)">Details</a></td>
+                    </tr>
+                }
+
+
+
+            }
+
+        }
+    </tbody>
+</table>

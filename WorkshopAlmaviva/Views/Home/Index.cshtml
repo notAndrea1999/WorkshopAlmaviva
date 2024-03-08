@@ -1,0 +1,101 @@
+﻿@model List<BookModel>;
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            loadPage();
+        })
+    </script>
+}
+
+@if (User.IsInRole("admin"))
+{
+    <div>
+        <a id="btn" class="btn btn-primary text-start" onclick="loadAddPage()">Add Book</a>
+    </div>
+}
+<div class="text-center">
+    <h1 class="display-4 mb-3">Welcome to the Library</h1>
+    <div class="d-flex mb-3">
+        <input id="value" class="form-control me-2" type="search" placeholder="Search a book" aria-label="Search">
+        <button id="btnSearch" class="btn btn-outline-success"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+
+
+    <div id="partialPage"></div>
+    <div id="paginationControls">
+        <a class="btn bg-info" id="btnFirstPage">First Page</a>
+        <a class="btn bg-info" id="btnPreviousPage">Previous</a>
+        <span>Pagina corrente: <span id="currentPage">1</span></span>
+        <a class="btn bg-info" id="btnNextPage">Next</a>
+        <a class="btn bg-info" id="btnLastPage">Last</a>
+    </div>
+</div>
+
+<div class="modal" id="modelWindow" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="partialPageAdd"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="myModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <a href="Home/_detailsBookUpdate/"></a>
+                <div id="partialPageUpdate"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myDetailModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Book Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <a href="Home/_bookDetails/"></a>
+                <div id="partialDetailPage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModalDelete" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Want to delete?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body">
+                <p>Confirm operation</p>
+            </div>
+            <div class="modal-footer">
+                <a id="triggerAnchor" href="Home/Delete/" class="btn bg-danger text-white">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

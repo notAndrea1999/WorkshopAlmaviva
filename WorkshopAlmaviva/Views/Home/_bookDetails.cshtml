@@ -1,0 +1,33 @@
+﻿@model WorkshopAlmaviva.Models.BookModel
+
+@{
+    ViewData["Title"] = "_bookDetails";
+}
+
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt class = "col-sm-3">
+        @Html.DisplayNameFor(model => model.AvilabilityStr)
+        </dt>
+        <dd class = "col-sm-9">
+        @Html.DisplayFor(model => model.AvilabilityStr)
+        </dd>
+    </dl>
+</div>
